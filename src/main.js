@@ -12,8 +12,6 @@ Vue.use(Vuetify)
 
 Vue.config.productionTip = false
 
-console.log(theme)
-
 Vue.use(Vuetify, {
   theme: theme
 })

@@ -1,6 +1,6 @@
 {
-  "name": "vmeetups",
-  "version": "1.0.0",
+  "name": "VueMeetups",
+  "version": "0.0.1",
   "description": "Vue + Vuetify + Firebase Tutorial",
   "author": "jboullion <jboullion83@gmail.com>",
   "private": true,

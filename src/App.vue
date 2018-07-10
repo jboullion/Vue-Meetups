@@ -41,6 +41,10 @@
     <main>
       <router-view></router-view>
     </main>
+    <v-footer class="pa-3" absolute>
+      <v-spacer></v-spacer>
+      <div>&copy; {{ new Date().getFullYear() }}</div>
+    </v-footer>
   </v-app>
 </template>
 

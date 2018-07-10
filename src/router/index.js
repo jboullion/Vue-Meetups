@@ -5,6 +5,7 @@ import Home from '@/components/Home'
 import MeetupList from '@/components/Meetup/List'
 import MeetupEdit from '@/components/Meetup/Edit'
 import MeetupCreate from '@/components/Meetup/Create'
+import Meetup from '@/components/Meetup/Meetup'
 
 import Signin from '@/components/Auth/Signin'
 import Signup from '@/components/Auth/Signup'
@@ -39,19 +40,24 @@ export default new Router({
       component: UserProfile
     },
     {
-      path: '/meetups/list',
+      path: '/meetup/list',
       name: 'List Meetups',
       component: MeetupList
     },
     {
-      path: '/meetups/edit',
+      path: '/meetup/edit',
       name: 'Edit Meetup',
       component: MeetupEdit
     },
     {
-      path: '/meetups/create',
+      path: '/meetup/create',
       name: 'Create Meetup',
       component: MeetupCreate
+    },
+    {
+      path: '/meetup/:id',
+      name: 'Meetup',
+      component: Meetup
     }
   ]
 })

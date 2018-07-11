@@ -10,12 +10,15 @@
         </v-layout>
         <v-layout row wrap class="text-md-center" mb-4>
             <v-flex xs12>
-              <v-carousel delimiter-icon="stop" >
+              <v-carousel delimiter-icon="stop" style="cursor: pointer;">
                 <v-carousel-item
                   v-for="meetup in meetups"
                   :key="meetup.id"
-                  :src="meetup.src" >
-                  <div class="title">{{ meetup.title }}</div>
+                  :src="meetup.imageUrl"
+                  @click.native="onLoadMeetup(meetup.id)">
+                  <!-- router 
+                  :to="'/meetup/' + meetup.id" -->
+                  <div class="title">{{ meetup.title + ' ' + meetup.id }}</div>
                 </v-carousel-item>
               </v-carousel>
             </v-flex>
@@ -25,17 +28,21 @@
 
 <script>
 export default {
+  name: 'Home',
   data () {
     return {
-      meetups: [
-        {id: 1, src: 'http://via.placeholder.com/550x350', title: 'Madison, WI', caption: ''},
-        {id: 2, src: 'http://via.placeholder.com/550x350', title: 'Chicago, IL', caption: ''},
-        {id: 3, src: 'http://via.placeholder.com/550x350', title: 'Minneapolis, MN', caption: ''},
-        {id: 4, src: 'http://via.placeholder.com/550x350', title: 'Ann Arbor, MI', caption: ''}
-      ]
     }
   },
-  name: 'Home'
+  computed: {
+    meetups () {
+      return this.$store.getters.featuredMeetups
+    }
+  },
+  methods: {
+    onLoadMeetup (id) {
+      this.$router.push('/meetup/' + id)
+    }
+  }
 }
 </script>
 

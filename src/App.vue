@@ -39,9 +39,9 @@
       </v-list>
     </v-navigation-drawer>
     <main>
-      <router-view></router-view>
+      <router-view transition></router-view>
     </main>
-    <v-footer class="pa-3" absolute>
+    <v-footer class="pa-3 mt-3" absolute>
       <v-spacer></v-spacer>
       <div>&copy; {{ new Date().getFullYear() }}</div>
     </v-footer>
@@ -55,8 +55,8 @@ export default {
       drawer: false,
       toolbarColor: 'primary', // TODO: this should be user editable. User should be able to build their own theme out of the Vuetify colors
       menuItems: [
-        { icon: 'wc', title: 'View Meetups', link: '/meetups/list' },
-        { icon: 'room', title: 'Create Meetup', link: '/meetups/create' },
+        { icon: 'wc', title: 'View Meetups', link: '/meetup/list' },
+        { icon: 'room', title: 'Create Meetup', link: '/meetup/create' },
         { icon: 'person', title: 'Profile', link: '/user/profile' },
         { icon: 'face', title: 'Sign Up', link: '/signup' },
         { icon: 'lock_open', title: 'Sign In', link: '/signin' }
@@ -66,3 +66,7 @@ export default {
   name: 'CosplayMeetup'
 }
 </script>
+
+<style>
+  div.headline { width: 100%; }
+</style>

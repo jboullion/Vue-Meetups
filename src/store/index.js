@@ -9,7 +9,7 @@ export const store = new Vuex.Store({
       {id: 1, imageUrl: 'http://via.placeholder.com/550x350', title: 'Gamehole Con', description: '', date: '2018-07-17', location: 'Madison, WI'},
       {id: 2, imageUrl: 'http://via.placeholder.com/550x350', title: 'Shycon', description: '', date: '2017-07-18', location: 'Chicago, IL'},
       {id: 3, imageUrl: 'http://via.placeholder.com/550x350', title: 'Minni Con', description: '', date: '2017-08-17', location: 'Minneapolis, MN'},
-      {id: 4, imageUrl: 'http://via.placeholder.com/550x350', title: 'Go Blue', description: '', date: '2017-07-01', location: 'Ann Arbor, MI'}
+      {id: 4, imageUrl: 'http://via.placeholder.com/550x350', title: 'Go Blue', description: 'This is a basic desciption', date: '2017-07-01', location: 'Ann Arbor, MI'}
     ],
     user: {
       id: 'awesomeid',
@@ -17,10 +17,25 @@ export const store = new Vuex.Store({
     }
   },
   mutations: {
-
+    createMeetup (state, payload) {
+      state.loadedMeetups.push(payload)
+    }
   },
   actions: {
+    createMeetup ({commit}, payload) {
+      const meetup = {
+        title: payload.title,
+        imageUrl: payload.imageUrl,
+        description: payload.description,
+        location: payload.location,
+        date: payload.date,
+        id: this.state.loadedMeetups.length + 1
+      }
 
+      commit('createMeetup', meetup)
+
+      return meetup.id
+    }
   },
   getters: {
     loadedMeetups (state) {
@@ -31,7 +46,7 @@ export const store = new Vuex.Store({
     loadedMeetup (state) {
       return (meetupId) => {
         return state.loadedMeetups.find((meetup) => {
-          console.log('meetup.id ' + meetup.id)
+          // console.log('meetup.id ' + meetup.id)
           return meetup.id === parseInt(meetupId)
         })
       }

@@ -30,7 +30,7 @@
     props: ['id'],
     computed: {
       meetup () {
-        console.log('Loaded Meetup ' + this.$store.getters.loadedMeetup(this.id))
+        // console.log('Loaded Meetup ' + this.$store.getters.loadedMeetup(this.id))
         return this.$store.getters.loadedMeetup(this.id)
       }
     }

@@ -78,8 +78,8 @@
                         <v-date-picker 
                             v-model="date"
                             scrollable
-                            min="2018-06-15"
-                            max="2020-03-20">
+                            :min="todayDate"
+                            :max="maxDate">
                         <v-spacer></v-spacer>
                         <v-btn flat color="primary" @click="dateModal = false">Cancel</v-btn>
                         <v-btn flat color="primary" @click="$refs.dateDialog.save(date)">OK</v-btn>
@@ -128,6 +128,8 @@
 </template>
 
 <script>
+  import moment from 'moment'
+
   export default {
     data () {
       return {
@@ -142,6 +144,8 @@
         description: '',
         date: null,
         time: null,
+        todayDate: moment().format('YYYY-MM-DD'),
+        maxDate: moment().add(2, 'years').format('YYYY-MM-DD'),
         titleLength: 50,
         titleRules: [
           v => !!v || 'Title is required',
@@ -182,6 +186,15 @@
         ]
       }
     },
+    created () {
+      // console.log(moment().format('L'))
+    },
+    computed: {
+      submittableDateTime () {
+        const date = new Date(this.date)
+        return date
+      }
+    },
     methods: {
       submit () {
         if (this.$refs.form.validate()) {
@@ -190,7 +203,7 @@
             location: this.location,
             imageUrl: this.imageUrl,
             description: this.description,
-            date: this.date
+            date: this.submittableDateTime()
           }
 
           this.$store.dispatch('createMeetup', meetupData)

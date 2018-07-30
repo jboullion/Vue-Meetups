@@ -8,10 +8,13 @@ import 'vuetify/dist/vuetify.min.css'
 
 import { theme } from './theme'
 import { store } from './store'
+import DateFilter from './filters/date'
 
 Vue.use(Vuetify)
 
 Vue.config.productionTip = false
+
+Vue.filter('formattedDate', DateFilter)
 
 Vue.use(Vuetify, {
   theme: theme

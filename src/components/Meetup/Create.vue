@@ -74,12 +74,15 @@
                         label="Date"
                         prepend-icon="event"
                         readonly
+                        required
+                        :rules="validDate"
                         ></v-text-field>
                         <v-date-picker 
-                            v-model="date"
+                            v-model="datePicker"
                             scrollable
                             :min="todayDate"
-                            :max="maxDate">
+                            :max="maxDate"
+                            :input="updateDate()">
                         <v-spacer></v-spacer>
                         <v-btn flat color="primary" @click="dateModal = false">Cancel</v-btn>
                         <v-btn flat color="primary" @click="$refs.dateDialog.save(date)">OK</v-btn>
@@ -100,10 +103,14 @@
                         label="Time"
                         prepend-icon="access_time"
                         readonly
+                        required
+                        :rules="validTime"
                         ></v-text-field>
                         <v-time-picker
                         v-if="timeModal"
-                        v-model="time"
+                        v-model="timePicker"
+                        format="ampm"
+                        :input="updateTime()"
                         >
                         <v-spacer></v-spacer>
                         <v-btn flat color="primary" @click="timeModal = false">Cancel</v-btn>
@@ -142,8 +149,10 @@
         state: '',
         imageUrl: '',
         description: '',
-        date: null,
-        time: null,
+        date: '',
+        time: '',
+        datePicker: null,
+        timePicker: null,
         todayDate: moment().format('YYYY-MM-DD'),
         maxDate: moment().add(2, 'years').format('YYYY-MM-DD'),
         titleLength: 50,
@@ -168,6 +177,12 @@
         ],
         isEditing: false,
         model: null,
+        validDate: [
+          v => !!v || 'Date is required'
+        ],
+        validTime: [
+          v => !!v || 'Time is required'
+        ],
         states: [
           'Alabama', 'Alaska', 'American Samoa', 'Arizona',
           'Arkansas', 'California', 'Colorado', 'Connecticut',
@@ -190,10 +205,7 @@
       // console.log(moment().format('L'))
     },
     computed: {
-      submittableDateTime () {
-        const date = new Date(this.date)
-        return date
-      }
+
     },
     methods: {
       submit () {
@@ -203,8 +215,10 @@
             location: this.location,
             imageUrl: this.imageUrl,
             description: this.description,
-            date: this.submittableDateTime()
+            date: moment(this.datePicker + ' ' + this.timePicker).format('YYYY-MM-DD HH:mm:ss')
           }
+
+          console.log(meetupData.date)
 
           this.$store.dispatch('createMeetup', meetupData)
           .then((value) => {
@@ -214,6 +228,16 @@
       },
       clear () {
         this.$refs.form.reset()
+      },
+      updateDate () {
+        if (this.datePicker) {
+          this.date = moment(this.datePicker).format('MMMM Do YYYY')
+        }
+      },
+      updateTime () {
+        if (this.timePicker) {
+          this.time = moment('2018-01-01 ' + this.timePicker).format('h:mm a')
+        }
       }
     }
   }

@@ -17,7 +17,7 @@
               <v-flex xs7>
                 <v-card-title primary-title>
                   <div class="headline mb-2" >{{ meetup.title }}</div>
-                  <div class="info--text">{{ meetup.date }}</div>
+                  <div class="info--text">{{ meetup.date | formattedDate }}</div>
                 </v-card-title>
                 <v-card-actions>
                   <v-spacer></v-spacer>

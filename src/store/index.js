@@ -6,10 +6,10 @@ Vue.use(Vuex)
 export const store = new Vuex.Store({
   state: {
     loadedMeetups: [
-      {id: 1, imageUrl: 'http://via.placeholder.com/550x350', title: 'Gamehole Con', description: '', date: '2018-07-17', location: 'Madison, WI'},
-      {id: 2, imageUrl: 'http://via.placeholder.com/550x350', title: 'Shycon', description: '', date: '2017-07-18', location: 'Chicago, IL'},
-      {id: 3, imageUrl: 'http://via.placeholder.com/550x350', title: 'Minni Con', description: '', date: '2017-08-17', location: 'Minneapolis, MN'},
-      {id: 4, imageUrl: 'http://via.placeholder.com/550x350', title: 'Go Blue', description: 'This is a basic desciption', date: '2017-07-01', location: 'Ann Arbor, MI'}
+      {id: 1, imageUrl: 'http://via.placeholder.com/550x350', title: 'Gamehole Con', description: '', date: new Date('2018-07-17 8:00'), location: 'Madison, WI'},
+      {id: 2, imageUrl: 'http://via.placeholder.com/550x350', title: 'Shycon', description: '', date: new Date('2017-07-18 12:00'), location: 'Chicago, IL'},
+      {id: 3, imageUrl: 'http://via.placeholder.com/550x350', title: 'Minni Con', description: '', date: new Date('2017-08-17 14:00'), location: 'Minneapolis, MN'},
+      {id: 4, imageUrl: 'http://via.placeholder.com/550x350', title: 'Go Blue', description: 'This is a basic desciption', date: new Date('2017-07-01 18:00'), location: 'Ann Arbor, MI'}
     ],
     user: {
       id: 'awesomeid',

@@ -1,6 +1,6 @@
 # vmeetups
 
-> Vue + Vuetify + Firebase Tutorial
+> Vue + Vuetify + Firebase
 
 ## Build Setup
 
